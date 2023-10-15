@@ -1,0 +1,12 @@
+export const API_URL = 'https://api.nomoreparties.co';
+export const MAIN_API_URL = 'https://api.films.nasdermn.nomoreparties.sbs/';
+export const MOVIES_API_URL = 'https://api.nomoreparties.co/beatfilm-movies';
+export const SHORTFILM_MAX_DURATION = 40;
+export const MONITOR_SCREEN_WIDTH = 1360;
+export const TABLET_SCREEN_WIDTH = 768;
+export const MONITOR_CARDS_AMOUNT = 12;
+export const TABLET_CARDS_AMOUNT = 8;
+export const MOBILE_CARDS_AMOUNT = 5;
+export const MONITOR_CARDS_PER_LOAD = 3;
+export const TABLET_CARDS_PER_LOAD = 2;
+export const MOBILE_CARDS_PER_LOAD = 2;

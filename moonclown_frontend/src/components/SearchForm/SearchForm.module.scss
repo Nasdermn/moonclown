@@ -1,0 +1,147 @@
+.searchform {
+  box-sizing: border-box;
+  margin: 70px 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 25px;
+  background-color: #500c0c;
+  gap: 15px;
+  border: 1px solid #e80b67;
+  border-radius: 25px;
+
+  &__label {
+    display: flex;
+    width: 100%;
+  }
+
+  &__label_type_input {
+    justify-content: space-between;
+    padding-bottom: 13px;
+    border-bottom: 1px solid #e80b67;
+  }
+
+  &__label_type_checkbox {
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  &__input {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: auto;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    flex-grow: 0.7;
+    flex-shrink: 0;
+    text-overflow: ellipsis;
+    color: #e80b67;
+  }
+
+  &__button {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    outline: 0;
+    width: 34px;
+    height: 34px;
+    background-image: url('../../images/loupe.svg');
+    background-color: #e80b67;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.4s ease;
+    border-radius: 25px;
+  }
+
+  &__button:hover {
+    opacity: 0.6;
+    transform: scale(0.95);
+  }
+
+  &__checkbox {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    outline: 0;
+    width: 36px;
+    height: 20px;
+    background-color: #500c0c;
+    max-width: 36px;
+    max-height: 20px;
+    background-image: url('../../images/off.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.5s ease;
+  }
+
+  &__checkbox_checked {
+    background-image: url('../../images/on.svg');
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: auto;
+    color: #e80b67;
+  }
+
+  &__text_strikethrough {
+    text-decoration: line-through;
+  }
+
+  &__error {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    color: red;
+  }
+
+  @media (min-width: 531px) and (max-width: 1000px) {
+    &__input {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 530px) {
+    & {
+      padding: 5vw;
+      gap: 3vw;
+    }
+
+    &__button {
+      width: 5vw;
+      height: 5vw;
+      background-size: 75%;
+    }
+
+    &__label_type_checkbox {
+      gap: 2vw;
+    }
+
+    &__input {
+      font-size: 3vw;
+    }
+
+    &__label_type_input {
+      padding-bottom: 11px;
+    }
+
+    &__text {
+      font-size: 3vw;
+    }
+
+    &__error {
+      font-size: 4vw;
+    }
+
+    &__checkbox {
+      width: 6vw;
+      height: 6vw;
+    }
+  }
+}
