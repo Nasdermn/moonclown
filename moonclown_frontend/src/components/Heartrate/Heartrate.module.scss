@@ -1,3 +1,11 @@
+$maxBoxShadowSize: 128px;
+$originalBoxShadowSize: 8vw;
+$boxShadowSize: min($originalBoxShadowSize, $maxBoxShadowSize);
+
+$maxBorderSize: 4.8px;
+$originalBorderSize: 0.3vw;
+$borderSize: min($originalBorderSize, $maxBorderSize);
+
 @keyframes skull {
   0% {
     top: 44.2%;
@@ -75,14 +83,28 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-color: rgba(184, 10, 10, 0.4);
+    background-color: rgba(184, 10, 10, 0.85);
+    outline: $borderSize double rgb(184, 10, 10);
     max-width: 30px;
     max-height: 30px;
     width: 1.875vw;
     height: 1.875vw;
     position: absolute;
     animation: skull 7s infinite;
-    box-shadow: 0 0 150px 50px rgb(184, 10, 10);
+    box-shadow: 0 0 150px $boxShadowSize rgb(184, 10, 10);
     border-radius: 25px;
+
+    @media (min-width: 600px) and (max-width: 1000px) {
+      background-color: rgba(184, 10, 10, 0.7);
+      outline: 0.5vw double rgb(184, 10, 10);
+    }
+
+    @media (min-width: 335px) and (max-width: 599px) {
+      background-color: rgba(184, 10, 10, 0.65);
+    }
+
+    @media (max-width: 334px) {
+      background-color: rgba(184, 10, 10, 0.55);
+    }
   }
 }

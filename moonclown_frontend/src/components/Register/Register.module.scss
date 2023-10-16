@@ -64,11 +64,19 @@
     cursor: not-allowed;
   }
 
-  &__input_error {
+  &__input_error,
+  &__input_success {
     font-weight: 400;
     font-size: 10px;
     line-height: auto;
+  }
+
+  &__input_error {
     color: #ff4062;
+  }
+
+  &__input_success {
+    color: #0f3b14;
   }
 
   &__input_error_centered {
@@ -220,7 +228,8 @@
       margin-bottom: 5vw;
     }
 
-    &__input_error {
+    &__input_error,
+    &__input_success {
       font-size: 3vw;
     }
 

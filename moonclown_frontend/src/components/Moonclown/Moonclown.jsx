@@ -28,11 +28,13 @@ function Moonclown() {
           </ul>
         </div>
       </div>
-      <img
-        className={styles.moonclown__image}
-        src={moonclown}
-        alt='Moonclown'
-      />
+      <div className={styles.moonclown__imageblock}>
+        <img
+          className={styles.moonclown__image}
+          src={moonclown}
+          alt='Moonclown'
+        />
+      </div>
     </section>
   );
 }
