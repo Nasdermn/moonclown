@@ -1,0 +1,156 @@
+.popup {
+  position: relative;
+  box-sizing: border-box;
+  max-width: 600px;
+  max-height: 300px;
+  width: 90vw;
+  height: 45vw;
+  outline: 8px double #b60a0a;
+  background-color: rgb(70, 70, 70);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+
+  &_big {
+    height: 75vw;
+    max-height: 500px;
+  }
+
+  &__cross {
+    position: absolute;
+    border: 0;
+    padding: 0;
+    outline: 0;
+    background: transparent url('../../images/icons/cross.svg') no-repeat;
+    width: 25px;
+    height: 25px;
+    top: -30px;
+    right: -30px;
+  }
+
+  &__title {
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 75%;
+    gap: 15px;
+
+    &_big {
+      height: 85%;
+      gap: 5px;
+    }
+  }
+
+  &__label {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 70px;
+  }
+
+  &__input {
+    box-sizing: border-box;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1;
+    width: 100%;
+    padding: 0 10% 10px 0;
+  }
+
+  &__button {
+    width: 90%;
+    border: 0;
+    outline: 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1;
+    text-align: center;
+    background-color: #98ae1f;
+    border: 1px solid #000;
+    height: 50px;
+    margin-top: auto;
+    padding: 0;
+
+    &_disabled {
+      background-color: rgb(70, 70, 70);
+      color: #000;
+      cursor: not-allowed;
+    }
+  }
+
+  @media (min-width: 500px) and (max-width: 700px) {
+    & {
+      padding: 15px;
+    }
+
+    &__cross {
+      width: 20px;
+      height: 20px;
+      top: -36px;
+      right: -8px;
+    }
+  }
+
+  @media (max-width: 499px) {
+    & {
+      padding: 2vw;
+      border-radius: 2vw;
+      outline-width: 1.5vw;
+
+      &_big {
+        gap: 1vw;
+        height: 90vw;
+      }
+    }
+
+    &__cross {
+      width: 5.5vw;
+      height: 5.5vw;
+      top: -9vw;
+      right: -1.5vw;
+    }
+
+    &__title {
+      font-size: 5vw;
+    }
+
+    &__form {
+      gap: 2vw;
+    }
+
+    &__label {
+      height: 17vw;
+      gap: 2vw;
+    }
+
+    &__input {
+      font-size: 3.5vw;
+      padding-bottom: 2vw;
+      border-width: 0.3vw;
+    }
+
+    &__button {
+      font-size: 4.5vw;
+      height: 11vw;
+      border-width: 0.3vw;
+    }
+  }
+}

@@ -1,0 +1,174 @@
+.poster {
+  position: relative;
+  box-sizing: border-box;
+  width: 600px;
+  height: fit-content;
+  max-height: 950px;
+  background: transparent url('../../images/backgrounds/stone_background.jpg') no-repeat center /
+    cover;
+  border: 15px groove #969191;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 50px 25px;
+
+  &__cross {
+    position: absolute;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 0;
+    outline: 0;
+    background: #851717 url('../../images/icons/black_cross.svg') no-repeat center / cover;
+    width: 30px;
+    height: 30px;
+    top: 14px;
+    right: 10px;
+  }
+
+  &__photo {
+    width: 340px;
+    height: 510px;
+    border: 6px solid #000;
+    border-radius: 12px;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    color: #c21683;
+    margin: 20px 0 50px;
+    text-shadow: 2px 1.2px #000;
+  }
+
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+
+    &_genres {
+      gap: 12px;
+      width: 40%;
+    }
+
+    &_major {
+      gap: 6px;
+      width: 55%;
+      justify-content: center;
+    }
+  }
+
+  &__subtitle {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1;
+    color: #adcd21;
+    margin: 0;
+    text-shadow: 2px 2px #000;
+  }
+
+  &__genres {
+    list-style-type: circle;
+    padding-left: 18px;
+  }
+
+  &__genre {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #fff;
+  }
+
+  &__note {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+    color: #adcd21;
+    text-shadow: 2px 2px #000;
+  }
+
+  &__value {
+    font-weight: 400;
+    text-wrap: nowrap;
+    color: #fff;
+  }
+
+  @media (max-width: 640px) {
+    & {
+      width: 90vw;
+      min-height: 125vw;
+      max-height: 170vw;
+      border-width: 2vw;
+      border-radius: 3vw;
+      padding: 2vw 6vw 3vw;
+    }
+
+    &__cross {
+      border-width: 0.5vw;
+      border-radius: 1vw;
+      width: 5vw;
+      height: 5vw;
+      top: 2.5vw;
+      right: 2vw;
+    }
+
+    &__photo {
+      width: 54vw;
+      height: 81vw;
+      border-width: 1vw;
+      border-radius: 2vw;
+    }
+
+    &__title {
+      font-size: 5vw;
+      margin: 3vw 0 7vw;
+      text-shadow: 0.4vw 0.4vw #000;
+    }
+
+    &__wrapper {
+      gap: 2vw;
+    }
+
+    &__info {
+      &_genres {
+        gap: 2vw;
+      }
+
+      &_major {
+        gap: 1vw;
+      }
+    }
+
+    &__subtitle {
+      font-size: 4vw;
+      text-shadow: 0.3vw 0.3vw #000;
+    }
+
+    &__genres {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    &__genre,
+    &__value,
+    &__note {
+      font-size: 3vw;
+    }
+
+    &__note {
+      text-shadow: 0.3vw 0.3vw #000;
+    }
+  }
+}

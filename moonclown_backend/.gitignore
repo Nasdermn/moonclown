@@ -1,0 +1,9 @@
+*.log
+yarn-error.log*
+node_modules
+dist
+images/*
+!images/default.png
+
+.env
+.prettierrc

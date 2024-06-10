@@ -1,0 +1,110 @@
+.searchform {
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 55%;
+  padding: 20px;
+  background-color: #500c0c;
+  gap: 20px;
+  border: 5px double #e80b67;
+  border-radius: 25px;
+
+  &__label {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 3%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e80b67;
+  }
+
+  &__input {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    width: 85%;
+    text-overflow: ellipsis;
+    color: #e80b67;
+  }
+
+  &__button {
+    border: 0;
+    padding: 0;
+    outline: 0;
+    width: 35px;
+    height: 35px;
+    background: #e80b67 url('../../images/icons/search.svg') no-repeat center / 50%;
+    border-radius: 50%;
+  }
+
+  &__error {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: red;
+    text-align: center;
+  }
+
+  @media (min-width: 640px) and (max-width: 1360px) {
+    & {
+      width: 65%;
+    }
+    &__input {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 639px) {
+    & {
+      width: 75%;
+      padding: 3vw 2vw 4vw;
+      border-radius: 20px;
+    }
+
+    &__input {
+      font-size: 12px;
+    }
+
+    &__button {
+      width: 25px;
+      height: 25px;
+    }
+
+    &__error {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 319px) {
+    & {
+      width: 80%;
+      padding: 3vw 2vw 4vw;
+      gap: 3vw;
+      border-width: 1vw;
+      border-radius: 5vw;
+    }
+
+    &__button {
+      width: 6vw;
+      height: 6vw;
+    }
+
+    &__input {
+      font-size: 3vw;
+    }
+
+    &__label {
+      padding-bottom: 3vw;
+    }
+
+    &__error {
+      font-size: 4vw;
+    }
+  }
+}

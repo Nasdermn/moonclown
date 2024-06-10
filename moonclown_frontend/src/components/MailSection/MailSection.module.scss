@@ -1,0 +1,153 @@
+.mail {
+  box-sizing: border-box;
+  width: 70%;
+  max-width: 500px;
+  height: auto;
+  max-height: 700px;
+  margin-top: 100px;
+  background: transparent url('../../images/backgrounds/stone_background.jpg') no-repeat center /
+    cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 20px;
+  border: 12px ridge #cd105f;
+  border-radius: 25px;
+  z-index: 1;
+
+  &_sent {
+    gap: 15px;
+  }
+
+  &__text {
+    font-size: 25px;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1;
+    color: #bc0661;
+    text-shadow: 1px 1px #000;
+    margin: 0;
+    text-align: center;
+  }
+
+  &__form {
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+  }
+
+  &__label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__input {
+    width: 100%;
+    height: 30px;
+    border: 0;
+    outline: 2px solid #dc1068;
+    border-radius: 7px;
+    background-color: #e6dfdf;
+    padding: 0 0 0 5px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+
+    &:focus {
+      outline: 2px solid #128fa8;
+    }
+
+    &_textarea {
+      height: 140px;
+      padding-top: 5px;
+    }
+  }
+
+  &__button {
+    width: 65%;
+    margin: 0;
+    outline: 0;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-align: center;
+    background-color: #d81178;
+    border: 2px solid #000;
+    border-radius: 15px;
+    height: 50px;
+    padding: 0;
+    color: #000;
+
+    &_disabled {
+      background-color: #6b6969;
+      cursor: not-allowed;
+      color: #4e4a4a;
+    }
+  }
+
+  &__image {
+    width: 55%;
+    height: 55%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 1000px) {
+    & {
+      padding: 2vw;
+      border-width: 1.5vw;
+      border-radius: 2vw;
+      margin-top: 10vw;
+      gap: 5vw;
+    }
+
+    &_sent {
+      gap: 1.5vw;
+    }
+
+    &__form {
+      gap: 2.2vw;
+    }
+  }
+
+  @media (max-width: 650px) {
+    &__text {
+      font-size: 3.8vw;
+      text-shadow: 0.1vw 0.1vw #000;
+    }
+
+    &__label {
+      gap: 1.5vw;
+    }
+
+    &__input {
+      height: 5vw;
+      outline-width: 0.4vw;
+      border-radius: 1vw;
+      padding-left: 1vw;
+      font-size: 3vw;
+
+      &:focus {
+        outline: 0.4vw solid #128fa8;
+      }
+
+      &_textarea {
+        height: 20vw;
+        padding-top: 1vw;
+      }
+    }
+
+    &__button {
+      font-size: 3.5vw;
+      border-width: 0.4vw;
+      border-radius: 2vw;
+      height: 8vw;
+    }
+  }
+}

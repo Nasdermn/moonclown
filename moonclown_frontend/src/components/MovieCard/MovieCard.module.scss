@@ -1,0 +1,133 @@
+.card {
+  box-sizing: border-box;
+  width: 280px;
+  height: 505px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #000;
+  box-shadow: 0px 2px 20px 0px #600e0e;
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(to right, #e80d85, #000);
+  border-image-slice: 1;
+
+  &__image {
+    width: 100%;
+    height: 83%;
+    object-fit: cover;
+    border-bottom: 1px solid #e80d85;
+    cursor: pointer;
+  }
+
+  &__wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    height: 15%;
+    display: grid;
+    grid-template-columns: 72% 28%;
+    grid-template-rows: 60% 40%;
+    padding: 0 10px;
+  }
+
+  &__title {
+    justify-self: start;
+    padding-top: 8px;
+    margin: 0;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 90%;
+    color: #a31764;
+  }
+
+  &__button {
+    justify-self: end;
+    border: 0;
+    padding: 0;
+    outline: 0;
+  }
+
+  &__like {
+    width: 30px;
+    height: 30px;
+    background: transparent url('../../images/icons/like_off.svg') no-repeat center / cover;
+  }
+
+  &__like_active {
+    background-image: url('../../images/icons/like.svg');
+  }
+
+  &__cross {
+    margin-top: 7px;
+    width: 15px;
+    height: 15px;
+    background: transparent url('../../images/icons/cross.svg') no-repeat center / cover;
+  }
+
+  &__year,
+  &__duration {
+    align-self: center;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1;
+    color: rgb(99, 111, 131);
+    margin: 0;
+    text-wrap: nowrap;
+  }
+
+  &__year {
+    justify-self: start;
+  }
+
+  &__duration {
+    justify-self: end;
+  }
+
+  @media (min-width: 320px) and (max-width: 639px) {
+    & {
+      width: 300px;
+      height: 540px;
+    }
+  }
+
+  @media (max-width: 319px) {
+    & {
+      width: 94vw;
+      height: 170vw;
+      gap: 1.5vw;
+    }
+
+    &__wrapper {
+      padding: 0 3vw;
+    }
+
+    &__like {
+      max-width: 30px;
+      max-height: 30px;
+      width: 8vw;
+      height: 8vw;
+    }
+
+    &__cross {
+      max-width: 15px;
+      max-height: 15px;
+      margin-top: 1vw;
+      width: 6vw;
+      height: 6vw;
+    }
+
+    &__title,
+    &__year,
+    &__duration {
+      font-size: 4vw;
+    }
+
+    &__title {
+      padding-top: 1.5vw;
+    }
+  }
+}

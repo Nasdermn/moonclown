@@ -1,0 +1,132 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts.css);
+
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #312f2f;
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.body {
+  width: 100%;
+  max-width: 1600px;
+  min-height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;
+
+  &_centered {
+    justify-content: center;
+  }
+}
+
+.clickable {
+  cursor: pointer;
+  transition: all 0.4s ease;
+
+  &:hover {
+    transform: scale(0.96);
+    opacity: 0.7;
+  }
+}
+
+.auth-wrapper {
+  width: 95%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  flex: 1;
+  gap: 3px;
+
+  @media (max-width: 530px) {
+    & {
+      gap: 0.5vw;
+    }
+  }
+}
+
+.absolute-wrapper {
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.6s ease;
+  z-index: 3;
+
+  &_opened {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.error {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1;
+  color: #ff0000;
+  width: 100%;
+  margin-bottom: 5px;
+
+  &_centered {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 400px) {
+    & {
+      font-size: 2.8vw;
+      margin-bottom: 1vw;
+
+      &_centered {
+        font-size: 3vw;
+      }
+    }
+  }
+}
+
+.password-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.password-switch {
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  width: 6%;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  top: 50%;
+  right: 1%;
+  transform: translateY(-50%);
+  background: transparent url('./images/icons/eye_opened.svg') no-repeat center / contain;
+  transition: all 0.4s ease;
+
+  &:hover {
+    opacity: 0.7;
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  &_active {
+    background-image: url('./images/icons/eye_closed.svg');
+  }
+}

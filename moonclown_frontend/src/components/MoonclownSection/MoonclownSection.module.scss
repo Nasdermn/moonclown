@@ -1,0 +1,104 @@
+.moonclown {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 25px;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+
+  &__titlewrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: 64px;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1;
+    color: #bc0661;
+    text-shadow: 1px 1px #d4d714;
+    margin: 0;
+    text-align: center;
+    z-index: 1;
+  }
+
+  &__bloodeye {
+    object-fit: contain;
+    width: 65px;
+    height: 65px;
+  }
+
+  &__subtitle {
+    width: 100%;
+    text-align: center;
+    color: #92c912;
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin: 0;
+    background: linear-gradient(to right, #bc0661 45%, #92c912 100%);
+    background-size: 75%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 10s linear infinite;
+  }
+
+  @media (min-width: 400px) and (max-width: 1000px) {
+    &__title {
+      font-size: 42px;
+      text-shadow: 0.5px 0.5px #d4d714;
+    }
+
+    &__bloodeye {
+      width: 45px;
+      height: 45px;
+    }
+
+    &__subtitle {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 399px) {
+    & {
+      margin-top: 5vw;
+    }
+    &__titlewrapper {
+      gap: 3vw;
+      margin-bottom: 4vw;
+    }
+
+    &__title {
+      font-size: 11vw;
+      text-shadow: 0.2vw 0.2vw #d4d714;
+    }
+
+    &__bloodeye {
+      width: 11.5vw;
+      height: 11.5vw;
+    }
+
+    &__subtitle {
+      font-size: 4.5vw;
+    }
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position-x: 0%;
+  }
+  100% {
+    background-position-x: 900%;
+  }
+}
