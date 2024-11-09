@@ -1,13 +1,15 @@
-import { setLikedMovies } from '../store/slices/likedMoviesSlice';
-import { setUserInfo } from '../store/slices/currentUserSlice';
+import useCurrentUser from '../stores/currentUser';
+import useLikedMovies from '../stores/likedMovies';
 import Api from './api';
-import { Dispatch } from '@reduxjs/toolkit';
 
-const getUserData = async (dispatch: Dispatch) => {
+const getUserData = async () => {
+  const setUserInfo = useCurrentUser.getState().setUserInfo;
+  const setLikedMovies = useLikedMovies.getState().setLikedMovies;
+
   try {
     const [apiUser, apiMovies] = await Promise.all([Api.getUser(), Api.getSavedMovies()]);
-    dispatch(setUserInfo(apiUser));
-    dispatch(setLikedMovies(apiMovies));
+    setUserInfo(apiUser);
+    setLikedMovies(apiMovies);
   } catch (error) {
     console.error('Ошибка при получении данных:', error);
   }

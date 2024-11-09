@@ -34,8 +34,8 @@
     max-height: 1045px;
     gap: 3vw;
     padding: 9vw 7vw 8vw;
-    background: transparent url('../../images/backgrounds/profile_background.jpg') no-repeat center /
-      cover;
+    background: transparent url('../../assets/images/backgrounds/profile_background.jpg') no-repeat
+      center / cover;
   }
 
   &__avatar {
@@ -61,7 +61,7 @@
     width: 60vw;
     height: 12vw;
     display: grid;
-    background: url('../../images/backgrounds/info_background.png') no-repeat center / cover;
+    background: url('../../assets/images/backgrounds/info_background.png') no-repeat center / cover;
     grid-template-rows: repeat(2, 45%);
     grid-template-columns: 25% 68%;
     align-content: space-between;
@@ -105,8 +105,8 @@
     width: 50vw;
     height: 50vw;
     border: 10px double #cb0e83;
-    background: transparent url('../../images/backgrounds/stone_background.jpg') no-repeat center /
-      cover;
+    background: transparent url('../../assets/images/backgrounds/stone_background.jpg') no-repeat
+      center / cover;
   }
 
   &__button {

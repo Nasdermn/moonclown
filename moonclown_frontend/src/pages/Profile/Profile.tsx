@@ -2,18 +2,17 @@ import styles from './Profile.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useCallback, useState } from 'react';
 import Header from '../../components/Header/Header';
-import { useDispatch, useSelector } from 'react-redux';
-import { setLoggedIn, setUserInfo } from '../../store/slices/currentUserSlice';
+import useCurrentUser from '../../stores/currentUser';
 import NamePopup from '../../components/NamePopup/NamePopup';
 import AvatarPopup from '../../components/AvatarPopup/AvatarPopup';
 import PasswordPopup from '../../components/PasswordPopup/PasswordPopup';
 import { MAIN_API_URL } from '../../utils/constants';
-import { RootState } from '../../store/store';
 
 function Profile() {
-  const dispatch = useDispatch();
+  const userInfo = useCurrentUser((state) => state.userInfo);
+  const setUserInfo = useCurrentUser((state) => state.setUserInfo);
+  const setLoggedIn = useCurrentUser((state) => state.setLoggedIn);
   const navigate = useNavigate();
-  const userInfo = useSelector((state: RootState) => state.currentUser.userInfo);
   const [isNamePopupOpen, setIsNamePopupOpen] = useState(false);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [isPasswordPopupOpen, setIsPasswordPopupOpen] = useState(false);
@@ -21,8 +20,8 @@ function Profile() {
   function handleUserLogout() {
     navigate('/');
     localStorage.clear();
-    dispatch(setUserInfo({ name: '', email: '' }));
-    dispatch(setLoggedIn(false));
+    setUserInfo({ name: '', email: '' });
+    setLoggedIn(false);
   }
 
   const closeAllPopups = useCallback(() => {
@@ -32,7 +31,7 @@ function Profile() {
   }, []);
 
   return (
-    <div className='body'>
+    <div className="body">
       <Header />
       <main className={styles.profile}>
         <h1 className={styles.profile__title}>Ваш профиль</h1>
@@ -40,7 +39,7 @@ function Profile() {
           <img
             className={styles.profile__avatar}
             src={`${MAIN_API_URL}/images/${userInfo.avatar}`}
-            alt='Фотография профиля'></img>
+            alt="Фотография профиля"></img>
           <div className={styles.profile__info}>
             <p className={styles.profile__property}>Никнейм:</p>
             <p className={`${styles.profile__value}`}>{userInfo.name}</p>
@@ -51,28 +50,28 @@ function Profile() {
         <div className={styles.profile__panel}>
           <button
             className={`${styles.profile__button} clickable `}
-            type='button'
+            type="button"
             disabled={isNamePopupOpen}
             onClick={() => setIsNamePopupOpen(true)}>
             Изменить имя
           </button>
           <button
             className={`${styles.profile__button} clickable `}
-            type='button'
+            type="button"
             disabled={isAvatarPopupOpen}
             onClick={() => setIsAvatarPopupOpen(true)}>
             Изменить аватарку
           </button>
           <button
             className={`${styles.profile__button} clickable `}
-            type='button'
+            type="button"
             disabled={isPasswordPopupOpen}
             onClick={() => setIsPasswordPopupOpen(true)}>
             Изменить пароль
           </button>
           <button
             className={`${styles.profile__button} ${styles.profile__button_red} clickable `}
-            type='button'
+            type="button"
             onClick={handleUserLogout}>
             Выйти из аккаунта
           </button>

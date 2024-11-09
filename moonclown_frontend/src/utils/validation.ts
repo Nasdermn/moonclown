@@ -8,16 +8,16 @@ export function useFormValidation(initialValues: IFormValues) {
 
   const inputValidationConfig = {
     name: {
-      pattern: /^[a-zA-Zа-яА-ЯёЁ\d\s-]{2,30}$/, // Латиница, кириллица, пробел, нижнее подчеркивание и дефис (длина: 2-30 символов)
+      pattern: /^[a-zA-Zа-яА-ЯёЁ\d\s-]{2,30}$/,
       errorMessage:
         'Пожалуйста, введите имя с использованием только латиницы, кириллицы, пробелов и дефисов.',
     },
     email: {
-      pattern: /^[a-zA-Z0-9._-]{2,42}@[a-zA-Z0-9-]{2,15}\.[a-zA-Z]{2,15}$/, // email (длина 7-60 символов)
+      pattern: /^[a-zA-Z0-9._-]{2,42}@[a-zA-Z0-9-]{2,15}\.[a-zA-Z]{2,15}$/,
       errorMessage: 'Пожалуйста, введите настоящий адрес электронной почты.',
     },
     password: {
-      pattern: /^[a-zA-Z0-9]{8,24}$/, // Латиница и цифры (длина 8-24 символов)
+      pattern: /^[a-zA-Z0-9]{8,24}$/,
       errorMessage: 'Пароль должен состоять только из латиницы и цифр.',
     },
     code: {
@@ -48,12 +48,11 @@ export function useFormValidation(initialValues: IFormValues) {
     const name = target.name;
     const value = target.value;
     setValues({ ...values, [name]: value });
-    const isValidField = target.checkValidity(); // Проверка стандартной валидации
+    const isValidField = target.checkValidity();
 
     if (!isValidField) {
       setErrors({ ...errors, [name]: target.validationMessage });
     } else {
-      // Проверяем, является ли `name` ключом в `inputValidationConfig`
       if (name in inputValidationConfig) {
         const config = inputValidationConfig[name as keyof typeof inputValidationConfig];
         const isCustomValidField = config.pattern.test(value);
@@ -77,14 +76,14 @@ export function useFormValidation(initialValues: IFormValues) {
           const config = inputValidationConfig[fieldName as keyof typeof inputValidationConfig];
           const isValidField = config.pattern.test(field.value);
           if (!isValidField) {
-            allFieldsValid = false; // Если хоть одно поле не валидно, устанавливаем флаг в false
-            break; // Выходим из цикла, как только находим невалидное поле
+            allFieldsValid = false;
+            break;
           }
         }
       }
     }
 
-    setIsValid(allFieldsValid && form?.checkValidity() !== false); // Устанавливаем isValid в зависимости от состояния всех полей
+    setIsValid(allFieldsValid && form?.checkValidity() !== false);
   };
 
   return {

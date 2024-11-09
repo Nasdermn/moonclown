@@ -27,7 +27,7 @@
     height: 100%;
     max-width: 40px;
     max-height: 40px;
-    background: url('../../images/icons/clown.svg') no-repeat center / 100%;
+    background: url('../../assets/images/icons/clown.svg') no-repeat center / 100%;
   }
 
   &__title {
@@ -103,7 +103,7 @@
       content: '';
       width: 30px;
       height: 30px;
-      background-image: url('../../images/icons/account.svg');
+      background-image: url('../../assets/images/icons/account.svg');
       border-radius: 6px;
       background-size: 11px 11px;
       background-repeat: no-repeat;
@@ -129,7 +129,7 @@
     display: none;
     padding: 0;
     outline: 0;
-    background: #ff0a0a url('../../images/icons/burger.svg') no-repeat center / contain;
+    background: #ff0a0a url('../../assets/images/icons/burger.svg') no-repeat center / contain;
   }
 
   &__menu {
@@ -180,7 +180,8 @@
     border: 0;
     padding: 0;
     outline: 0;
-    background: transparent url('../../images/icons/black_cross.svg') no-repeat center / contain;
+    background: transparent url('../../assets/images/icons/black_cross.svg') no-repeat center /
+      contain;
   }
 
   &__menu_links {
@@ -214,7 +215,7 @@
       width: 30px;
       height: 30px;
       border-radius: 6px;
-      background: #f9f9f9 url('../../images/icons/account.svg') no-repeat center / 40%;
+      background: #f9f9f9 url('../../assets/images/icons/account.svg') no-repeat center / 40%;
     }
   }
 

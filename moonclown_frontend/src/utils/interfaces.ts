@@ -102,3 +102,25 @@ export interface IErrorSetter {
 export interface ISetter {
   (value: boolean): void;
 }
+
+interface IUser {
+  name: string;
+  email: string;
+  avatar?: string;
+}
+
+export interface ICurrentUserState {
+  userInfo: IUser;
+  loggedIn: boolean;
+  logoutReason: string;
+  setUserInfo: (userInfo: IUser) => void;
+  setLoggedIn: (loggedIn: boolean) => void;
+  setLogoutReason: (reason: string) => void;
+}
+
+export interface ILikedMoviesState {
+  likedMovies: ILikedMovie[];
+  setLikedMovies: (movies: ILikedMovie[]) => void;
+  handleLikeCard: (movie: IMovie) => Promise<void>;
+  handleDeleteCard: (id: number) => Promise<void>;
+}

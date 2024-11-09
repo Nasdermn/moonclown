@@ -59,7 +59,7 @@ function PasswordPopupComponent({ isOpen, onClose }: IChildrenPopupProps) {
             'Подтверждение пароля не соответствует новому паролю!',
             2500,
             setError,
-            setButtonBlocked,
+            setButtonBlocked
           );
         }
       } else {
@@ -69,7 +69,7 @@ function PasswordPopupComponent({ isOpen, onClose }: IChildrenPopupProps) {
   }
   return (
     <Popup
-      title='Изменить пароль'
+      title="Изменить пароль"
       isOpen={isOpen}
       onClose={() => {
         handleClose();
@@ -78,23 +78,23 @@ function PasswordPopupComponent({ isOpen, onClose }: IChildrenPopupProps) {
       onDisable={!isValid || buttonBlocked}
       isBig>
       <label className={styles.popup__label}>
-        <div className='password-wrapper'>
+        <div className="password-wrapper">
           <input
             className={styles.popup__input}
-            name='oldpassword'
+            name="oldpassword"
             type={showPassword.oldpassword ? 'text' : 'password'}
-            id='profile-input-old-password'
-            autoComplete='no-autocomplete'
+            id="profile-input-old-password"
+            autoComplete="no-autocomplete"
             value={values.oldpassword || ''}
             onChange={handleChange}
             required
-            placeholder='Введите старый пароль'
+            placeholder="Введите старый пароль"
             minLength={8}
             maxLength={24}
           />
           {!error && (
             <button
-              type='button'
+              type="button"
               className={
                 showPassword.oldpassword
                   ? 'password-switch password-switch_active'
@@ -103,26 +103,26 @@ function PasswordPopupComponent({ isOpen, onClose }: IChildrenPopupProps) {
               onClick={() => toggleShowPassword('oldpassword')}></button>
           )}
         </div>
-        {errors.oldpassword && <span className='error'>{errors.oldpassword}</span>}
+        {errors.oldpassword && <span className="error">{errors.oldpassword}</span>}
       </label>
       <label className={styles.popup__label}>
-        <div className='password-wrapper'>
+        <div className="password-wrapper">
           <input
             className={styles.popup__input}
-            name='newpassword'
+            name="newpassword"
             type={showPassword.newpassword ? 'text' : 'password'}
-            id='profile-input-new-password'
-            autoComplete='no-autocomplete'
+            id="profile-input-new-password"
+            autoComplete="no-autocomplete"
             value={values.newpassword || ''}
             onChange={handleChange}
             required
-            placeholder='Введите новый пароль'
+            placeholder="Введите новый пароль"
             minLength={8}
             maxLength={24}
           />
           {!error && (
             <button
-              type='button'
+              type="button"
               className={
                 showPassword.newpassword
                   ? 'password-switch password-switch_active'
@@ -131,26 +131,26 @@ function PasswordPopupComponent({ isOpen, onClose }: IChildrenPopupProps) {
               onClick={() => toggleShowPassword('newpassword')}></button>
           )}
         </div>
-        {errors.newpassword && <span className='error'>{errors.newpassword}</span>}
+        {errors.newpassword && <span className="error">{errors.newpassword}</span>}
       </label>
       <label className={styles.popup__label}>
-        <div className='password-wrapper'>
+        <div className="password-wrapper">
           <input
             className={styles.popup__input}
-            name='confirmpassword'
+            name="confirmpassword"
             type={showPassword.confirmpassword ? 'text' : 'password'}
-            id='profile-input-confirm-password'
-            autoComplete='no-autocomplete'
+            id="profile-input-confirm-password"
+            autoComplete="no-autocomplete"
             value={values.confirmpassword || ''}
             onChange={handleChange}
             required
-            placeholder='Подтвердите новый пароль'
+            placeholder="Подтвердите новый пароль"
             minLength={8}
             maxLength={24}
           />
           {!error && (
             <button
-              type='button'
+              type="button"
               className={
                 showPassword.confirmpassword
                   ? 'password-switch password-switch_active'
@@ -159,9 +159,9 @@ function PasswordPopupComponent({ isOpen, onClose }: IChildrenPopupProps) {
               onClick={() => toggleShowPassword('confirmpassword')}></button>
           )}
         </div>
-        {errors.confirmpassword && <span className='error'>{errors.confirmpassword}</span>}
+        {errors.confirmpassword && <span className="error">{errors.confirmpassword}</span>}
       </label>
-      {error && <span className='error error_centered'>{error}</span>}
+      {error && <span className="error error_centered">{error}</span>}
     </Popup>
   );
 }

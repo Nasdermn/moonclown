@@ -35,6 +35,16 @@
     text-shadow: 1.2px 1.2px #000;
   }
 
+  &__subtitle {
+    margin: 0 0 20px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1;
+    align-self: start;
+    color: #2b58c0;
+    text-shadow: 1px 1px #000;
+  }
+
   &__form {
     display: flex;
     flex-direction: column;
@@ -109,7 +119,7 @@
     height: 45px;
     border-radius: 3px;
     border: 1px solid #000;
-    margin: 15px 0 -10px;
+    margin-bottom: -10px;
     background-color: #e7126e;
 
     &_disabled {
@@ -225,7 +235,7 @@
       height: 10vw;
       border-radius: 0.3vw;
       border-width: 0.2vw;
-      margin: 3vw 0 -2vw;
+      margin-bottom: -2vw;
 
       &_long {
         width: 88%;

@@ -1,14 +1,14 @@
 import styles from './NotFound.module.scss';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import pigSound from '../../audio/pigSound.mp3';
-import roarSound from '../../audio/roarSound.mp3';
-import dieSound from '../../audio/dieSound.mp3';
-import { useDispatch } from 'react-redux';
-import { setUserInfo, setLoggedIn } from '../../store/slices/currentUserSlice';
+import pigSound from '../../assets/audio/pigSound.mp3';
+import roarSound from '../../assets/audio/roarSound.mp3';
+import dieSound from '../../assets/audio/dieSound.mp3';
+import useCurrentUser from '../../stores/currentUser';
 
 function NotFound() {
-  const dispatch = useDispatch();
+  const setUserInfo = useCurrentUser((state) => state.setUserInfo);
+  const setLoggedIn = useCurrentUser((state) => state.setLoggedIn);
   const navigate = useNavigate();
   const [clickCounter, setClickCounter] = useState(0);
   const [pigCondition, setPigCondition] = useState(0);
@@ -29,9 +29,9 @@ function NotFound() {
         playSound(dieSound);
         setTimeout(() => {
           localStorage.clear();
-          dispatch(setUserInfo({ name: '', email: '' }));
-          dispatch(setLoggedIn(false));
-          navigate('/signin', {
+          setUserInfo({ name: '', email: '' });
+          setLoggedIn(false);
+          navigate('/login', {
             state: {
               loginText: [
                 'Вы были наказаны',
@@ -45,17 +45,17 @@ function NotFound() {
   };
 
   return (
-    <div className='body'>
+    <div className="body">
       <main className={styles.error}>
         {pigCondition === 2 ? (
-          <div className={`${styles.error__image} ${styles.error__image_active}`}></div>
-        ) : pigCondition === 1 ? (
           <div className={styles.error__image}></div>
+        ) : pigCondition === 1 ? (
+          <div className={`${styles.error__image} ${styles.error__image_active}`}></div>
         ) : (
           <div className={styles.error__container}>
             <h1 className={styles.error__title}>404</h1>
             <h2 className={styles.error__subtitle}>Страница не найдена</h2>
-            <button className={styles.error__pig} onClick={handleButtonClick} type='button'>
+            <button className={styles.error__pig} onClick={handleButtonClick} type="button">
               {clickCounter > 7 ? (
                 <div className={styles.error__wordcloud}>
                   <span className={styles.error__text}>Хватит, пожалуйста</span>
@@ -67,7 +67,7 @@ function NotFound() {
               onClick={() => {
                 navigate('/');
               }}
-              type='button'>
+              type="button">
               {'-> Вернуться назад <-'}
             </button>
           </div>

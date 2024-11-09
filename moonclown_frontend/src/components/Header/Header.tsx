@@ -1,11 +1,10 @@
 import styles from './Header.module.scss';
 import { Link, useLocation } from 'react-router-dom';
 import { memo, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import useCurrentUser from '../../stores/currentUser';
 
 function HeaderComponent() {
-  const loggedIn = useSelector((state: RootState) => state.currentUser.loggedIn);
+  const loggedIn = useCurrentUser((state) => state.loggedIn);
   const { pathname } = useLocation();
   const [isHeaderMenuOpen, setIsHeaderMenuOpen] = useState(false);
 
@@ -15,37 +14,37 @@ function HeaderComponent() {
   if (!loggedIn) {
     return pathname === '/' ? (
       <header className={styles.header}>
-        <Link to='/' className={`${styles.header__logo} clickable`}></Link>
+        <Link to="/" className={`${styles.header__logo} clickable`}></Link>
         <div className={styles.header__wrapper}>
-          <Link to='/signup' className={`${styles.header__signup} clickable`}>
+          <Link to="/register/identify" className={`${styles.header__signup} clickable`}>
             Регистрация
           </Link>
-          <Link to='/signin' className={`${styles.header__signin} clickable`}>
+          <Link to="/login" className={`${styles.header__signin} clickable`}>
             Войти
           </Link>
         </div>
       </header>
     ) : (
       <header className={`${styles.header} ${styles.header_black}`}>
-        <Link to='/' className={`${styles.header__logo} clickable`}></Link>
+        <Link to="/" className={`${styles.header__logo} clickable`}></Link>
         <h1 className={styles.header__title}>moonclown</h1>
       </header>
     );
   } else {
     return (
       <header className={styles.header}>
-        <Link to='/' className={`${styles.header__logo} clickable`}></Link>
+        <Link to="/" className={`${styles.header__logo} clickable`}></Link>
         <div className={styles.header__links}>
           <div className={`${styles.header__wrapper} ${styles.header__wrapper_films}`}>
             <Link
-              to='/movies'
+              to="/movies"
               className={`${styles.header__link} clickable ${
                 pathname === '/movies' ? styles.header__link_active : ''
               }`}>
               Фильмы
             </Link>
             <Link
-              to='/saved-movies'
+              to="/saved-movies"
               className={`${styles.header__link} clickable ${
                 pathname === '/saved-movies' ? styles.header__link_active : ''
               }`}>
@@ -53,7 +52,7 @@ function HeaderComponent() {
             </Link>
           </div>
           <Link
-            to='/profile'
+            to="/profile"
             className={`${styles.header__link} clickable ${styles.header__link_account} ${
               pathname === '/profile' ? styles.header__link_active : ''
             }`}>
@@ -74,21 +73,21 @@ function HeaderComponent() {
                 onClick={handleToggleMenu}></button>
               <div className={styles.header__menu_links}>
                 <Link
-                  to='/'
+                  to="/"
                   className={`${styles.header__menu_link} clickable ${
                     pathname === '/' ? styles.header__menu_link_active : ''
                   }`}>
                   Главная
                 </Link>
                 <Link
-                  to='/movies'
+                  to="/movies"
                   className={`${styles.header__menu_link} clickable ${
                     pathname === '/movies' ? styles.header__menu_link_active : ''
                   }`}>
                   Фильмы
                 </Link>
                 <Link
-                  to='/saved-movies'
+                  to="/saved-movies"
                   className={`${styles.header__menu_link} clickable ${
                     pathname === '/saved-movies' ? styles.header__menu_link_active : ''
                   }`}>
@@ -96,7 +95,7 @@ function HeaderComponent() {
                 </Link>
               </div>
             </div>
-            <Link to='/profile' className={`${styles.header__menu_account}  clickable`}>
+            <Link to="/profile" className={`${styles.header__menu_account}  clickable`}>
               Аккаунт
             </Link>
           </div>

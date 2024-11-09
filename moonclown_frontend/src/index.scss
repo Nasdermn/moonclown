@@ -118,7 +118,7 @@
   top: 50%;
   right: 1%;
   transform: translateY(-50%);
-  background: transparent url('./images/icons/eye_opened.svg') no-repeat center / contain;
+  background: transparent url('./assets/images/icons/eye_opened.svg') no-repeat center / contain;
   transition: all 0.4s ease;
 
   &:hover {
@@ -127,6 +127,6 @@
   }
 
   &_active {
-    background-image: url('./images/icons/eye_closed.svg');
+    background-image: url('./assets/images/icons/eye_closed.svg');
   }
 }

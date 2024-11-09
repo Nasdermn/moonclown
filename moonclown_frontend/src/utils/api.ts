@@ -1,8 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
 import { MAIN_API_URL } from './constants';
 import { IMovie, IApiMovie, IMovieResult } from './interfaces';
-import store from '../store/store';
-import { setLoggedIn, setLogoutReason } from '../store/slices/currentUserSlice';
+import useCurrentUser from '../stores/currentUser';
 
 class Api {
   private mainApi: AxiosInstance;
@@ -19,12 +18,14 @@ class Api {
       (response) => response,
       (error: AxiosError) => {
         if (error.response && error.response.status === 401) {
-          store.dispatch(setLoggedIn(false));
-          store.dispatch(setLogoutReason('Ваш jwt-токен истёк'));
+          const setLoggedIn = useCurrentUser.getState().setLoggedIn;
+          const setLogoutReason = useCurrentUser.getState().setLogoutReason;
+          setLoggedIn(false);
+          setLogoutReason('Ваш jwt-токен истёк');
           localStorage.removeItem('jwt');
         }
         return Promise.reject(error);
-      },
+      }
     );
   }
 
@@ -40,7 +41,7 @@ class Api {
         JSON.stringify({
           status: res.status,
           message: res.data ? res.data.message : 'Произошла ошибка',
-        }),
+        })
       );
     }
   }
@@ -107,7 +108,7 @@ class Api {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
-        },
+        }
       )
       .then(this.responseHandler);
   }
@@ -135,7 +136,7 @@ class Api {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
-        },
+        }
       )
       .then(this.responseHandler);
   }
@@ -186,7 +187,7 @@ class Api {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       )
       .then(this.responseHandler)
       .then(({ docs, page, pages }) => {

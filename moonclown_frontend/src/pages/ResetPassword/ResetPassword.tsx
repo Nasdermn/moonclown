@@ -1,4 +1,4 @@
-import styles from '../Register/Register.module.scss';
+import styles from '../Registration/Register.module.scss';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Api from '../../utils/api';
@@ -15,8 +15,7 @@ function ResetPassword() {
     newpassword: '',
     confirmpassword: '',
   });
-  const [isButtonBlocked, setIsButtonBlocked] = useState(false);
-  const [isInputsDisabled, setIsInputsDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState({
     newpassword: false,
@@ -46,35 +45,29 @@ function ResetPassword() {
   const handlePasswordReset = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (values.newpassword !== values.confirmpassword) {
-      showError('Пароли не совпадают.', 1700, setError, setIsButtonBlocked, setIsInputsDisabled);
+      showError('Пароли не совпадают.', 1700, setError, setLoading);
       return;
     }
 
     if (isValid) {
-      setIsButtonBlocked(true);
+      setLoading(true);
       Api.updatePassword(id!, token!, values.confirmpassword)
         .then(() => {
-          navigate('/signin', {
+          navigate('/login', {
             state: {
               loginText: ['Пароль был обновлён', 'Теперь вы можете войти с новым паролем.'],
             },
           });
         })
         .catch((err) => {
-          showError(
-            err.response.data.message,
-            3500,
-            setError,
-            setIsButtonBlocked,
-            setIsInputsDisabled,
-          );
+          showError(err.response.data.message, 3500, setError, setLoading);
         });
     }
   };
 
   if (isValidToken === null) {
     return (
-      <div className='body body_centered'>
+      <div className="body body_centered">
         <Preloader />
       </div>
     );
@@ -85,32 +78,32 @@ function ResetPassword() {
   }
 
   return (
-    <div className='body'>
-      <div className='auth-wrapper'>
+    <div className="body">
+      <div className="auth-wrapper">
         <Header />
         <main className={`${styles.authorization} ${styles.authorization_pink}`}>
           <h2 className={styles.authorization__title}>Сброс пароля</h2>
           <form className={styles.authorization__form} onSubmit={handlePasswordReset} noValidate>
             <label className={styles.authorization__label}>
               <span className={styles['authorization__input-title']}>Новый пароль</span>
-              <div className='password-wrapper'>
+              <div className="password-wrapper">
                 <input
                   className={styles.authorization__input}
-                  name='newpassword'
+                  name="newpassword"
                   type={showPassword.newpassword ? 'text' : 'password'}
-                  id='reset-password-input-new-password'
-                  autoComplete='no-autocomplete'
+                  id="reset-password-input-new-password"
+                  autoComplete="no-autocomplete"
                   value={values.newpassword || ''}
                   onChange={handleChange}
                   required
-                  placeholder='Введите пароль'
+                  placeholder="Введите пароль"
                   minLength={8}
                   maxLength={24}
-                  disabled={isInputsDisabled}
+                  disabled={loading}
                 />
-                {!isInputsDisabled && (
+                {!loading && (
                   <button
-                    type='button'
+                    type="button"
                     className={
                       showPassword.newpassword
                         ? 'password-switch password-switch_active'
@@ -119,28 +112,28 @@ function ResetPassword() {
                     onClick={() => toggleShowPassword('newpassword')}></button>
                 )}
               </div>
-              {errors.newpassword && <span className='error'>{errors.newpassword}</span>}
+              {errors.newpassword && <span className="error">{errors.newpassword}</span>}
             </label>
             <label className={styles.authorization__label}>
               <span className={styles['authorization__input-title']}>Подтвердите новый пароль</span>
-              <div className='password-wrapper'>
+              <div className="password-wrapper">
                 <input
                   className={styles.authorization__input}
-                  name='confirmpassword'
+                  name="confirmpassword"
                   type={showPassword.confirmpassword ? 'text' : 'password'}
-                  id='reset-password-input-confirm-password'
-                  autoComplete='no-autocomplete'
+                  id="reset-password-input-confirm-password"
+                  autoComplete="no-autocomplete"
                   value={values.confirmpassword || ''}
                   onChange={handleChange}
                   required
-                  placeholder='Введите пароль ещё раз'
+                  placeholder="Введите пароль ещё раз"
                   minLength={8}
                   maxLength={24}
-                  disabled={isInputsDisabled}
+                  disabled={loading}
                 />
-                {!isInputsDisabled && (
+                {!loading && (
                   <button
-                    type='button'
+                    type="button"
                     className={
                       showPassword.confirmpassword
                         ? 'password-switch password-switch_active'
@@ -149,15 +142,15 @@ function ResetPassword() {
                     onClick={() => toggleShowPassword('confirmpassword')}></button>
                 )}
               </div>
-              {errors.confirmpassword && <span className='error'>{errors.confirmpassword}</span>}
+              {errors.confirmpassword && <span className="error">{errors.confirmpassword}</span>}
             </label>
-            {error && <span className='error error_centered'>{error}</span>}
+            {error && <span className="error error_centered">{error}</span>}
             <button
               className={`${styles.authorization__button} ${
-                !isValid || isButtonBlocked ? styles.authorization__button_disabled : 'clickable'
+                !isValid || loading ? styles.authorization__button_disabled : 'clickable'
               }`}
-              type='submit'
-              disabled={!isValid || isButtonBlocked}>
+              type="submit"
+              disabled={!isValid || loading}>
               Изменить пароль
             </button>
           </form>

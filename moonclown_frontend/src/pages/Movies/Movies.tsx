@@ -6,8 +6,6 @@ import MovieCard from '../../components/MovieCard/MovieCard';
 import Footer from '../../components/Footer/Footer';
 import Preloader from '../../components/Preloader/Preloader';
 import Api from '../../utils/api';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
 import {
   BIG_MONITOR_SCREEN_WIDTH,
   MONITOR_SCREEN_WIDTH,
@@ -25,16 +23,17 @@ import {
   MOBILE_CARDS_PER_LOAD,
 } from '../../utils/constants';
 import { IMovie } from '../../utils/interfaces';
+import useLikedMovies from '../../stores/likedMovies';
 
 function Movies() {
-  const likedMovies = useSelector((state: RootState) => state.likedMovies);
+  const likedMovies = useLikedMovies((state) => state.likedMovies);
   const storedMovies = sessionStorage.getItem('displayedMovies');
   const parsedMovies = storedMovies ? JSON.parse(storedMovies) : [];
   const [displayedMovies, setDisplayedMovies] = useState<IMovie[]>(parsedMovies);
   const [searchQuery, setSearchQuery] = useState(sessionStorage.getItem('searchQuery') || '');
   const [moviePage, setMoviePage] = useState(Number(sessionStorage.getItem('page')) || 0);
   const [pageCondition, setPageCondition] = useState(
-    Number(sessionStorage.getItem('pageCondition')) || 0,
+    Number(sessionStorage.getItem('pageCondition')) || 0
   );
   const [visibleCardsCount, setVisibleCardsCount] = useState(12);
   const [totalMoviesCount, setTotalMoviesCount] = useState(parsedMovies.length);
@@ -144,7 +143,7 @@ function Movies() {
     };
   });
   return (
-    <div className='body'>
+    <div className="body">
       <Header />
       <main className={styles.movies}>
         <SearhForm

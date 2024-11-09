@@ -1,11 +1,10 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
 import { Navigate } from 'react-router-dom';
 import { IProtectedElementProps } from '../../utils/interfaces';
+import useCurrentUser from '../../stores/currentUser';
 
 function ProtectedElement({ children }: IProtectedElementProps) {
-  const loggedIn = useSelector((state: RootState) => state.currentUser.loggedIn);
-  const logoutReason = useSelector((state: RootState) => state.currentUser.logoutReason);
+  const loggedIn = useCurrentUser((state) => state.loggedIn);
+  const logoutReason = useCurrentUser((state) => state.logoutReason);
   const loginText = logoutReason
     ? [logoutReason, 'Пожалуйста, авторизуйтесь для продолжения.']
     : [
@@ -16,7 +15,7 @@ function ProtectedElement({ children }: IProtectedElementProps) {
   if (loggedIn) {
     return <>{children}</>;
   } else {
-    return <Navigate to='/signin' state={{ loginText }} />;
+    return <Navigate to="/login" state={{ loginText }} />;
   }
 }
 

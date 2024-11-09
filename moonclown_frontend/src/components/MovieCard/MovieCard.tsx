@@ -2,22 +2,19 @@ import styles from './MovieCard.module.scss';
 import { memo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Timeconverter } from '../../utils/timeConvertFunction.ts';
-import { useDispatch, useSelector } from 'react-redux';
-import { handleLikeCard, handleDeleteCard } from '../../store/thunks/likedMoviesThunks.ts';
-import { RootState } from '../../store/store.ts';
-import { ThunkDispatch, Action } from '@reduxjs/toolkit';
+import useLikedMovies from '../../stores/likedMovies.ts';
 import { IMovieCardProps } from '../../utils/interfaces.ts';
 import MoviePoster from '../MoviePoster/MoviePoster.tsx';
 
 const MovieCardComponent: React.FC<IMovieCardProps> = ({ movieData, isLiked }) => {
   const { pathname } = useLocation();
   const [isPosterOpen, setIsPosterOpen] = useState(false);
-  const dispatch: ThunkDispatch<RootState, unknown, Action> = useDispatch();
-  const likedMovies = useSelector((state: RootState) => state.likedMovies);
+  const handleLikeCard = useLikedMovies((state) => state.handleLikeCard);
+  const handleDeleteCard = useLikedMovies((state) => state.handleDeleteCard);
 
   const handleLikeClick = () => {
     if ('id' in movieData) {
-      dispatch(handleLikeCard(movieData, likedMovies));
+      handleLikeCard(movieData);
     } else {
       console.error('Ошибка типа данных: ожидался id');
     }
@@ -25,7 +22,7 @@ const MovieCardComponent: React.FC<IMovieCardProps> = ({ movieData, isLiked }) =
 
   const handleCrossClick = () => {
     if ('_id' in movieData) {
-      dispatch(handleDeleteCard(movieData._id));
+      handleDeleteCard(movieData._id);
     } else {
       console.error('Ошибка типа данных: ожидался _id');
     }
@@ -35,7 +32,7 @@ const MovieCardComponent: React.FC<IMovieCardProps> = ({ movieData, isLiked }) =
     <li className={styles.card}>
       <img
         src={movieData.poster}
-        alt='Фото фильма'
+        alt="Фото фильма"
         className={styles.card__image}
         onClick={() => setIsPosterOpen(true)}></img>
       <div className={styles.card__wrapper}>

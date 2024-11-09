@@ -1,6 +1,5 @@
 import { memo, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setUserInfo } from '../../store/slices/currentUserSlice';
+import useCurrentUser from '../../stores/currentUser';
 import { showError } from '../../utils/showError';
 import Popup from '../Popup/Popup';
 import styles from '../Popup/Popup.module.scss';
@@ -8,7 +7,7 @@ import Api from '../../utils/api';
 import { IChildrenPopupProps } from '../../utils/interfaces';
 
 function AvatarPopupComponent({ isOpen, onClose }: IChildrenPopupProps) {
-  const dispatch = useDispatch();
+  const setUserInfo = useCurrentUser((state) => state.setUserInfo);
   const [fileKey, setFileKey] = useState(0);
   const [img, setImg] = useState<File | null>(null);
 
@@ -23,7 +22,7 @@ function AvatarPopupComponent({ isOpen, onClose }: IChildrenPopupProps) {
     }
     Api.patchAvatar(data)
       .then((response) => {
-        dispatch(setUserInfo(response.user));
+        setUserInfo(response.user);
         handleClose();
       })
       .catch((err) => {
@@ -45,19 +44,19 @@ function AvatarPopupComponent({ isOpen, onClose }: IChildrenPopupProps) {
 
   return (
     <Popup
-      title='Изменить фотографию'
+      title="Изменить фотографию"
       isOpen={isOpen}
       onClose={handleClose}
       onSubmit={handleSubmit}
       onDisable={buttonBlocked}>
       <input
         key={fileKey}
-        type='file'
-        accept='.png, .jpg, .jpeg'
+        type="file"
+        accept=".png, .jpg, .jpeg"
         onChange={handleFileChange}
         className={styles.popup__input}
       />
-      {error && <span className='error error_centered'>{error}</span>}
+      {error && <span className="error error_centered">{error}</span>}
     </Popup>
   );
 }

@@ -1,7 +1,5 @@
 import styles from '../Movies/Movies.module.scss';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
 
 import Header from '../../components/Header/Header';
 import SearhForm from '../../components/SearchForm/SearchForm';
@@ -25,9 +23,10 @@ import {
   MOBILE_CARDS_PER_LOAD,
 } from '../../utils/constants';
 import { ILikedMovie } from '../../utils/interfaces';
+import useLikedMovies from '../../stores/likedMovies';
 
 function SavedMovies() {
-  const likedMovies = useSelector((state: RootState) => state.likedMovies);
+  const likedMovies = useLikedMovies((state) => state.likedMovies);
   const [displayedMovies, setDisplayedMovies] = useState<ILikedMovie[]>(likedMovies);
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +44,7 @@ function SavedMovies() {
       setIsLoading(true);
       setError(null);
       const filteredMovies = likedMovies.filter((movie) =>
-        movie.name.toLowerCase().includes(searchQuery.toLowerCase()),
+        movie.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setDisplayedMovies(filteredMovies);
       setTotalMoviesCount(filteredMovies.length);
@@ -97,7 +96,7 @@ function SavedMovies() {
   const updatedMoviesList = displayedMovies.slice(0, visibleCardsCount);
 
   return (
-    <div className='body'>
+    <div className="body">
       <Header />
       <main className={styles.movies}>
         <SearhForm

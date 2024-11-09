@@ -2,7 +2,7 @@
   "name": "moonclown_backend",
   "private": true,
   "version": "1.0.0",
-  "description": "Бэкенд для веб-приложения \"moonclown\"",
+  "description": "Серверная часть веб-приложения \"moonclown\"",
   "main": "dist/app.js",
   "license": "MIT",
   "author": "Nasdermn",

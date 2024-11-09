@@ -69,7 +69,7 @@ $borderSize: min($originalBorderSize, $maxBorderSize);
 .heartrate {
   position: relative;
   display: block;
-  background-image: url('../../images/mainpage/pulse.jpg');
+  background-image: url('../../assets/images/mainpage/pulse.jpg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -80,7 +80,7 @@ $borderSize: min($originalBorderSize, $maxBorderSize);
 
   &__skull {
     left: 5vw;
-    background-image: url('../../images/mainpage/skull.svg');
+    background-image: url('../../assets/images/mainpage/skull.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

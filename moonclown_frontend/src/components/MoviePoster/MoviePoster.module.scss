@@ -4,8 +4,8 @@
   width: 600px;
   height: fit-content;
   max-height: 950px;
-  background: transparent url('../../images/backgrounds/stone_background.jpg') no-repeat center /
-    cover;
+  background: transparent url('../../assets/images/backgrounds/stone_background.jpg') no-repeat
+    center / cover;
   border: 15px groove #969191;
   border-radius: 15px;
   display: flex;
@@ -19,7 +19,7 @@
     border-radius: 5px;
     padding: 0;
     outline: 0;
-    background: #851717 url('../../images/icons/black_cross.svg') no-repeat center / cover;
+    background: #851717 url('../../assets/images/icons/black_cross.svg') no-repeat center / cover;
     width: 30px;
     height: 30px;
     top: 14px;

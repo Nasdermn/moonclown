@@ -1,10 +1,12 @@
-import { celebrate, Joi } from 'celebrate';
-import { RequestHandler } from 'express';
+import { celebrate, Joi } from "celebrate";
+import { RequestHandler } from "express";
 import {
+  codeSchema,
   emailSchema,
+  messageSchema,
   nameSchema,
   passwordSchema,
-} from '../utils/validationSchemas';
+} from "../utils/validationSchemas";
 
 export const loginValidation: RequestHandler = celebrate({
   body: Joi.object().keys({
@@ -42,9 +44,7 @@ export const passwordValidation: RequestHandler = celebrate({
 export const checkCodeValidation: RequestHandler = celebrate({
   body: Joi.object().keys({
     email: emailSchema,
-    code: Joi.string()
-      .required()
-      .pattern(/^\d{6}$/),
+    code: codeSchema,
   }),
 });
 
@@ -52,9 +52,7 @@ export const sendMessageValidation: RequestHandler = celebrate({
   body: Joi.object().keys({
     name: nameSchema,
     email: emailSchema,
-    message: Joi.string()
-      .required()
-      .pattern(/^[a-zA-Zа-яА-ЯёЁ\d,.!?():;@_=\-+"№/\\\s]{20,1000}$/),
+    message: messageSchema,
   }),
 });
 
@@ -75,7 +73,7 @@ export const movieValidation: RequestHandler = celebrate({
       .items(
         Joi.object({
           name: Joi.string().required(),
-        }),
+        })
       )
       .required(),
     country: Joi.string().required(),

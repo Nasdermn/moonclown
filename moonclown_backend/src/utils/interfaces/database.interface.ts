@@ -1,4 +1,4 @@
-import { Schema, Document, Model } from 'mongoose';
+import { Schema, Document, Model } from "mongoose";
 
 export interface IUserDocument extends Document {
   name: string;
@@ -10,7 +10,7 @@ export interface IUserDocument extends Document {
 export interface IUserModel extends Model<IUserDocument> {
   findUserByCredentials(
     email: string,
-    password: string,
+    password: string
   ): Promise<IUserDocument>;
 }
 
@@ -33,5 +33,6 @@ export interface IMovieDocument extends Document {
 export interface ICodeDocument extends Document {
   email: string;
   code: string;
+  nextSendAllowedAt: Date;
   createdAt: Date;
 }
