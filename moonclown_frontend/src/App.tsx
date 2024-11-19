@@ -1,24 +1,12 @@
 import { JwtPayload, jwtDecode } from 'jwt-decode';
-import { useEffect, useState } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import ProtectedElement from './components/ProtectedElement/ProtectedElement.tsx';
+import { useEffect, useState, lazy } from 'react';
+import { Route, Routes, Outlet } from 'react-router-dom';
 import useCurrentUser from './stores/currentUser.ts';
-
-import Main from './pages/Main/Main.tsx';
-import Movies from './pages/Movies/Movies.tsx';
-import SavedMovies from './pages/SavedMovies/SavedMovies.tsx';
-import Profile from './pages/Profile/Profile.tsx';
-import Authentification from './pages/Authentification/Authentification.tsx';
-import NotFound from './pages/NotFound/NotFound.tsx';
-import ForgotPassword from './pages/ForgotPassword/ForgotPassword.tsx';
-import SendPassword from './pages/SendPassword/SendPassword.tsx';
-import ResetPassword from './pages/ResetPassword/ResetPassword.tsx';
-import Identification from './pages/Identification/Identification.tsx';
-import Verification from './pages/Verification/Verification.tsx';
-import Registration from './pages/Registration/Registration.tsx';
-
-import Preloader from './components/Preloader/Preloader.tsx';
+import NotFound from './pages/common/NotFound/NotFound.tsx';
+import Loader from './components/Loader/Loader.tsx';
 import getUserData from './utils/getUserData.ts';
+import ProtectedLayout from './layouts/ProtectedLayout.tsx';
+import AuthLayout from './layouts/AuthLayout.tsx';
 
 const isTokenExpired = (token: string): boolean => {
   const { exp } = jwtDecode<JwtPayload>(token);
@@ -26,9 +14,20 @@ const isTokenExpired = (token: string): boolean => {
 };
 
 function App() {
+  const Main = lazy(() => import('./pages/common/Main/Main.tsx'));
+  const Movies = lazy(() => import('./pages/common/Movies/Movies.tsx'));
+  const SavedMovies = lazy(() => import('./pages/common/SavedMovies/SavedMovies.tsx'));
+  const Profile = lazy(() => import('./pages/common/Profile/Profile.tsx'));
+  const Authentification = lazy(() => import('./pages/auth/Authentification/Authentification.tsx'));
+  const Identification = lazy(() => import('./pages/auth/Identification/Identification.tsx'));
+  const Verification = lazy(() => import('./pages/auth/Verification/Verification.tsx'));
+  const Registration = lazy(() => import('./pages/auth/Registration/Registration.tsx'));
+  const ForgotPassword = lazy(() => import('./pages/password/ForgotPassword/ForgotPassword.tsx'));
+  const SendPassword = lazy(() => import('./pages/password/SendPassword/SendPassword.tsx'));
+  const ResetPassword = lazy(() => import('./pages/password/ResetPassword/ResetPassword.tsx'));
+
   const [isLoading, setIsLoading] = useState(true);
   const jwt = localStorage.getItem('jwt');
-  const loggedIn = useCurrentUser((state) => state.loggedIn);
   const setLoggedIn = useCurrentUser((state) => state.setLoggedIn);
 
   useEffect(() => {
@@ -46,58 +45,32 @@ function App() {
   }, [jwt]);
 
   return isLoading ? (
-    <div className="body body_centered">
-      <Preloader />
+    <div className="body">
+      <Loader />
     </div>
   ) : (
     <Routes>
-      <Route path="/" element={<Main />} />
-      <Route
-        path="/movies"
-        element={
-          <ProtectedElement>
-            <Movies />
-          </ProtectedElement>
-        }
-      />
-      <Route
-        path="/saved-movies"
-        element={
-          <ProtectedElement>
-            <SavedMovies />
-          </ProtectedElement>
-        }
-      />
-      <Route
-        path="/profile"
-        element={
-          <ProtectedElement>
-            <Profile />
-          </ProtectedElement>
-        }
-      />
-      <Route
-        path="/login"
-        element={loggedIn ? <Navigate to="/" replace /> : <Authentification />}
-      />
-      <Route path="/register">
-        <Route index element={<Identification />} />
-        <Route path="identify" element={<Identification />} />
-        <Route path="verify" element={<Verification />} />
-        <Route path="complete" element={<Registration />} />
+      <Route path="/" element={<ProtectedLayout />}>
+        <Route index element={<Main />} />
+        <Route path="movies" element={<Movies />} />
+        <Route path="saved-movies" element={<SavedMovies />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
-      <Route
-        path="/forgot-password"
-        element={loggedIn ? <Navigate to="/" replace /> : <ForgotPassword />}
-      />
-      <Route
-        path="/send-password"
-        element={loggedIn ? <Navigate to="/" replace /> : <SendPassword />}
-      />
-      <Route
-        path="/reset-password/:id/:token"
-        element={loggedIn ? <Navigate to="/" replace /> : <ResetPassword />}
-      />
+      <Route path="/auth" element={<AuthLayout />}>
+        <Route path="login" element={<Authentification />} />
+        <Route path="register" element={<Outlet />}>
+          <Route index element={<Identification />} />
+          <Route path="identify" element={<Identification />} />
+          <Route path="verify" element={<Verification />} />
+          <Route path="complete" element={<Registration />} />
+        </Route>
+      </Route>
+      <Route path="/password" element={<AuthLayout />}>
+        <Route index element={<ForgotPassword />} />
+        <Route path="forgot" element={<ForgotPassword />} />
+        <Route path="send" element={<SendPassword />} />
+        <Route path="reset/:id/:token" element={<ResetPassword />} />
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

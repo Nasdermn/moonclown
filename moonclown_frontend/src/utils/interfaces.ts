@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 export interface IFormValues {
   [key: string]: string;
 }
@@ -74,10 +72,6 @@ export interface ISearchFormProps {
   onSubmit: (page: number) => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-}
-
-export interface IProtectedElementProps {
-  children: ReactNode;
 }
 
 export interface IPopupProps {

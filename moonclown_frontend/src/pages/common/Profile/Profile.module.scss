@@ -1,0 +1,193 @@
+.profile {
+  width: 100%;
+  max-width: 1600px;
+  box-sizing: border-box;
+  margin: 0 0 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;
+  flex: 1;
+
+  &__title {
+    margin: 1.5vw 0 0;
+    font-weight: 700;
+    font-size: 5vw;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    border-bottom: 0.1vw solid #cb0e83;
+    color: #cb0e83;
+  }
+
+  &__data {
+    padding-top: 6.4vw;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 62vw;
+    gap: 2.7vw;
+    background: transparent url('../../../assets/images/backgrounds/profile_background.jpg')
+      no-repeat center / cover;
+  }
+
+  &__avatar {
+    box-sizing: border-box;
+    width: 38vw;
+    height: 38vw;
+    border-radius: 0.5vw;
+    border: 0.1vw solid #000;
+    object-fit: cover;
+    object-position: 50% 50%;
+    background-color: #ffffff;
+  }
+
+  &__info {
+    box-sizing: border-box;
+    border: 0.3vw solid #cb0e83;
+    border-radius: 1vw;
+    margin: 0 auto;
+    padding-left: 2.2%;
+    max-width: 840px;
+    max-height: 168px;
+    width: 60vw;
+    height: 12vw;
+    display: grid;
+    background: url('../../../assets/images/backgrounds/info_background.png') no-repeat center /
+      cover;
+    grid-template-rows: repeat(2, 45%);
+    grid-template-columns: 25% 68%;
+    align-content: space-between;
+    align-items: center;
+    column-gap: 3%;
+  }
+
+  &__property,
+  &__value {
+    width: 100%;
+    font-size: 2.5vw;
+    line-height: 1.2;
+    margin: 0;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+    align-self: center;
+  }
+
+  &__property {
+    justify-self: start;
+    font-weight: 700;
+    color: #9c0c67;
+    text-align: left;
+    text-decoration: underline;
+  }
+
+  &__value {
+    justify-self: end;
+    font-weight: 500;
+    color: #95cd1e;
+    text-align: right;
+  }
+
+  &__panel {
+    box-sizing: border-box;
+    align-items: center;
+    justify-items: center;
+    padding: 10px;
+    gap: 10px;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    width: 85vw;
+    max-width: 850px;
+    height: 145px;
+    border: 10px double #cb0e83;
+    background: transparent url('../../../assets/images/backgrounds/stone_background.jpg') no-repeat
+      center / cover;
+  }
+
+  &__button {
+    border: 3px solid #d70f52;
+    outline: 0;
+    padding: 0;
+    background-color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    width: 95%;
+    max-width: 200px;
+    height: 75%;
+    border-radius: 10px;
+    text-align: center;
+    white-space: nowrap;
+
+    &_red {
+      background-color: #000;
+      color: #d70f52;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    &__title {
+      margin: 20px 0 0;
+      border-width: 2px;
+    }
+
+    &__data {
+      width: 1218px;
+      height: 861px;
+      padding-top: 90px;
+      gap: 60px;
+    }
+
+    &__avatar {
+      width: 500px;
+      height: 500px;
+      border-radius: 15px;
+      border-width: 3px;
+    }
+
+    &__info {
+      border-width: 3px;
+      border-radius: 15px;
+      padding: 30px 0 30px 33px;
+      grid-template-rows: repeat(2, 35%);
+    }
+  }
+
+  @media (min-width: 800px) {
+    &__property,
+    &__value {
+      font-size: 20px;
+    }
+
+    &__title {
+      font-size: 32px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    & {
+      margin: 0 0 5vw;
+    }
+    &__panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 70vw;
+      height: 70vw;
+      border-width: 2vw;
+      gap: 4vw;
+    }
+
+    &__button {
+      border-width: 0.8vw;
+      font-size: 3.7vw;
+      width: 75%;
+      height: 18%;
+      border-radius: 3vw;
+    }
+  }
+}

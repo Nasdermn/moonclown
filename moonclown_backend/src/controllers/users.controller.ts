@@ -39,7 +39,7 @@ class UsersController {
     try {
       const id = (req as any).user._id;
       if (!req.file) {
-        throw new BadRequestError("Фотография не загружена.");
+        throw new BadRequestError("Фотография в нужном формате не загружена.");
       }
       const avatar = req.file.filename;
       const updatedUser = await usersService.updateAvatar(id, avatar);

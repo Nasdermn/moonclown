@@ -16,10 +16,10 @@ function HeaderComponent() {
       <header className={styles.header}>
         <Link to="/" className={`${styles.header__logo} clickable`}></Link>
         <div className={styles.header__wrapper}>
-          <Link to="/register/identify" className={`${styles.header__signup} clickable`}>
+          <Link to="/auth/register/identify" className={`${styles.header__signup} clickable`}>
             Регистрация
           </Link>
-          <Link to="/login" className={`${styles.header__signin} clickable`}>
+          <Link to="/auth/login" className={`${styles.header__signin} clickable`}>
             Войти
           </Link>
         </div>

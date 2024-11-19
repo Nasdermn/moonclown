@@ -1,0 +1,149 @@
+.movies {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;
+
+  &,
+  &__text {
+    margin: 50px 0;
+  }
+
+  &__button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+    width: 50%;
+  }
+
+  &__button {
+    cursor: not-allowed;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    width: 45%;
+    max-width: 250px;
+    height: 55px;
+    background-color: #4a4646;
+    border: 5px double #4a4646;
+    border-radius: 20px;
+    font-size: 14px;
+    line-height: 1;
+
+    &_large {
+      font-weight: 700;
+    }
+
+    &_small {
+      font-weight: 500;
+    }
+
+    &_enabled {
+      background-color: #cad624;
+      border-color: #bb05a0;
+      cursor: pointer;
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #a5b60c;
+    text-align: center;
+  }
+
+  &__cards {
+    margin: 40px 0;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__cardlist {
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (min-width: 640px) and (max-width: 1360px) {
+    & {
+      padding: 0 15px;
+    }
+
+    &__cardlist {
+      gap: 15px;
+    }
+
+    &__button_small {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    & {
+      padding: 0 3vw;
+    }
+
+    &,
+    &__text {
+      margin: 7vw 0;
+    }
+
+    &__cards {
+      margin: 6vw 0;
+    }
+
+    &__button-container {
+      width: 95%;
+      gap: 5%;
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 639px) {
+    &__button_small {
+      font-size: 10px;
+    }
+  }
+
+  @media (max-width: 319px) {
+    &__text {
+      font-size: 6vw;
+    }
+
+    &__cardlist {
+      gap: 5vw;
+    }
+
+    &__button {
+      font-size: 6vw;
+      height: 20vw;
+      border-width: 2vw;
+      border-radius: 7vw;
+    }
+
+    &__button_small {
+      font-size: 4vw;
+    }
+  }
+}
+
+.loader-wrapper {
+  padding: 50px 0;
+  @media (max-width: 319px) {
+    & {
+      padding: 8vw 0;
+    }
+  }
+}
